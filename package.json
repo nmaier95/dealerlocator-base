@@ -19,7 +19,7 @@
     "url": "https://github.com/nmaier95/dealerlocator-base"
   },
   "author": "Niklas Maier",
-  "license": "ISC",
+  "license": "Apache License 2.0",
   "husky": {
     "hooks": {
       "pre-commit": "npm run precommit"
