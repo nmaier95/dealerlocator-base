@@ -123,6 +123,15 @@ export default class MapsDataService {
 	}
 
 	/**
+	 * prefills data of maps data source if no urlGenerator is passed
+	 *
+	 * @param {any} data
+	 */
+	setData(data) {
+		this.mapsDataSource.setData(data);
+	}
+
+	/**
 	 * add filter-option, does not apply them to data yet
 	 *
 	 * @param {any} propName
