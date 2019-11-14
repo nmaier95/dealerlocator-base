@@ -147,7 +147,7 @@ export default class MapsDataSource {
 	 */
 	fetchDataFor(extended = false, ids = []) {
 		if (this._urlGenerator === undefined) {
-			return this._data;
+			return Promise.resolve(this._data);
 		} else {
 			return new Promise((resolve, reject) => {
 				const apiUrl = this._urlGenerator({
