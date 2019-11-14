@@ -1,0 +1,90 @@
+{
+    "success": true,
+    "error": "",
+    "results": [
+        {
+            "id": 13,
+            "properties": {
+                "type": "roller",
+                "brand": "asdf",
+                "dealerName": "Cool features GmbH",
+                "markerToClientPos": 10,
+                "salesPerson": "Max Mustermann",
+                "city": "Frankfurt",
+                "continent": "Europe",
+                "country": "Germany",
+                "region-id": "xyz",
+                "street": "An der Börse 2-4",
+                "zipCode": "",
+                "email": "sdfsdfsd@sdfsd.de"
+            },
+            "geometry": {
+                "lng": 8.452127,
+                "lat": 50.100924
+			}
+        },
+        {
+            "id": 14,
+            "properties": {
+                "type": "mofa",
+                "brand": "asd",
+                "dealerName": "Super Sales GmbH",
+                "markerToClientPos": 1,
+                "salesPerson": "Max Mustermann",
+                "city": "Frankfurt",
+                "continent": "Europe",
+                "country": "Germany",
+                "region-id": "xyz",
+                "street": "An der Börse 2-4",
+                "zipCode": "12345",
+                "email": "sdfsdfsd@sdfsd.de"
+            },
+            "geometry": {
+                "lng": 8.682127,
+                "lat": 50.110924
+			}
+        },
+        {
+            "id": 15,
+            "properties": {
+                "type": "roller",
+                "brand": "jkl",
+                "dealerName": "Cool features GmbH",
+                "salesPerson": "Max Mustermann",
+                "markerToClientPos": 5,
+                "city": "Frankfurt",
+                "continent": "Europe",
+                "country": "Germany",
+                "region-id": "xyz",
+                "street": "An der Börse 2-4",
+                "zipCode": "12345",
+                "email": "sdfsdfsd@sdfsd.de"
+            },
+            "geometry": {
+                "lng": 8.352127,
+                "lat": 50.300024
+			}
+        },
+        {
+            "id": 16,
+            "properties": {
+                "type": "roller",
+                "brand": "asd",
+                "dealerName": "Super Sales GmbH",
+                "markerToClientPos": 2,
+                "salesPerson": "Max Mustermann",
+                "city": "Frankfurt",
+                "continent": "Europe",
+                "country": "Germany",
+                "region-id": "xyz",
+                "street": "An der Börse 2-4",
+                "zipCode": "12345",
+                "email": "sdfsdfsd@sdfsd.de"
+            },
+            "geometry": {
+                "lng": 8.252127,
+                "lat": 50.000224
+			}
+        }
+    ]
+}

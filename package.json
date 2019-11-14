@@ -1,0 +1,45 @@
+{
+  "name": "dealerlocator-base",
+  "version": "1.0.0",
+  "description": "Base Version of a dealerlocator API",
+  "main": "dist/commonjs/bundle.js",
+  "scripts": {
+    "start": "webpack --watch --mode development --export-type commonjs",
+    "build": "npm run build:commonjs:prod && npm run build:amd:prod && npm run build:var:prod",
+    "build:commonjs:prod": "webpack --mode production --export-type commonjs",
+    "build:commonjs:dev": "webpack --mode development --export-type commonjs",
+    "build:amd:prod": "webpack --mode production --export-type amd",
+    "build:amd:dev": "webpack --mode development --export-type amd",
+    "build:var:prod": "webpack --mode production --export-type var",
+    "build:var:dev": "webpack --mode development --export-type var",
+    "precommit": "npx prettier --write \"src/**/*.{js,json,scss,md}\" && git update-index --again"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nmaier95/dealerlocator-base"
+  },
+  "author": "Niklas Maier",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-classes": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.1.4",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.7",
+    "jsdoc-to-markdown": "^5.0.1",
+    "prettier": "^1.18.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4"
+  }
+}
