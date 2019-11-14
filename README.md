@@ -19,6 +19,9 @@
 ## Functions
 
 <dl>
+<dt><a href="#setData">setData(data)</a></dt>
+<dd><p>calls MapsDataSource to set data if no urlGenerator is passed</p>
+</dd>
 <dt><a href="#replaceTemplateVar">replaceTemplateVar(tmpl, templateVar, delimiters, properties)</a> ⇒ <code>htmlString</code></dt>
 <dd><p>Replaces template vars in passed template.
 Escapes html to prevent xss and tries to replace html encoded templatevars as well</p>
@@ -46,12 +49,17 @@ applies maxResults limit if maxResults isset</p>
 <dt><a href="#getItems">getItems()</a> ⇒ <code>Promise</code></dt>
 <dd><p>returns filtered data</p>
 </dd>
+<dt><a href="#setData">setData(data)</a></dt>
+<dd><p>prefills data of maps data source if no urlGenerator is passed</p>
+</dd>
 <dt><a href="#buildResult">buildResult(url, options)</a></dt>
 <dd><p>Requests a json document</p>
 </dd>
 <dt><a href="#request">request(url, options)</a></dt>
 <dd><p>Requests a json document</p>
 </dd>
+<dt><a href="#setData">setData(data)</a></dt>
+<dd></dd>
 </dl>
 
 <a name="DealerLocator"></a>
@@ -432,6 +440,17 @@ This may trigger a api request.
 
 ## clusters\_ : [<code>Array.&lt;Cluster&gt;</code>](#new_Cluster_new)
 **Kind**: global variable  
+<a name="setData"></a>
+
+## setData(data)
+calls MapsDataSource to set data if no urlGenerator is passed
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| data | <code>Array</code> | 
+
 <a name="replaceTemplateVar"></a>
 
 ## replaceTemplateVar(tmpl, templateVar, delimiters, properties) ⇒ <code>htmlString</code>
@@ -511,6 +530,17 @@ applies maxResults limit if maxResults isset
 returns filtered data
 
 **Kind**: global function  
+<a name="setData"></a>
+
+## setData(data)
+prefills data of maps data source if no urlGenerator is passed
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| data | <code>any</code> | 
+
 <a name="buildResult"></a>
 
 ## buildResult(url, options)
@@ -534,4 +564,13 @@ Requests a json document
 | --- | --- |
 | url | <code>String</code> | 
 | options | <code>Object</code> | 
+
+<a name="setData"></a>
+
+## setData(data)
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| data | <code>any</code> | 
 
