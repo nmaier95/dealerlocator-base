@@ -1,6 +1,6 @@
 {
   "name": "dealerlocator-base",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Base Version of a dealerlocator API",
   "main": "dist/commonjs/bundle.js",
   "scripts": {
