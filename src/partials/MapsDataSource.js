@@ -109,6 +109,14 @@ export default class MapsDataSource {
 	}
 
 	/**
+	 *
+	 * @param  {any} data
+	 */
+	setData(data) {
+		this._data = data;
+	}
+
+	/**
 	 * Merges the given array into the current data
 	 *
 	 * @param {any} data
@@ -138,17 +146,24 @@ export default class MapsDataSource {
 	 * @memberof MapsDataSource
 	 */
 	fetchDataFor(extended = false, ids = []) {
-		return new Promise((resolve, reject) => {
-			const apiUrl = this._urlGenerator({ extended: extended, ids: ids });
+		if (this._urlGenerator === undefined) {
+			return this._data;
+		} else {
+			return new Promise((resolve, reject) => {
+				const apiUrl = this._urlGenerator({
+					extended: extended,
+					ids: ids,
+				});
 
-			this.request(apiUrl, {})
-				.then((result) => {
-					if (result.success && result.data.success) {
-						resolve(this.mergeData(result.data.results));
-					}
-				})
-				.catch((e) => reject(e));
-		});
+				this.request(apiUrl, {})
+					.then((result) => {
+						if (result.success && result.data.success) {
+							resolve(this.mergeData(result.data.results));
+						}
+					})
+					.catch((e) => reject(e));
+			});
+		}
 	}
 
 	/* Public ---------------------------------------------------------------------------------- */
