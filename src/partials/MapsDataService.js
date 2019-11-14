@@ -157,7 +157,8 @@ export default class MapsDataService {
 		this.filters = this.filters.filter(
 			(item) =>
 				item.type == 'property' &&
-				(item.propValue != propValue && item.propName != propName),
+				item.propValue != propValue &&
+				item.propName != propName,
 		);
 	}
 

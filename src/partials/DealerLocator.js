@@ -38,7 +38,7 @@ export default class DealerLocator {
 			resultsContainer: '',
 			apiKey: '',
 			hasCluster: true,
-			resultRendering: true,
+			hasCustomResults: true,
 			cumputeDistanceBetweenPoints: () => {
 				return;
 			},
@@ -102,9 +102,9 @@ export default class DealerLocator {
 			config.hasCluster
 				? config.hasCluster
 				: this.defaultConfig.hasCluster,
-			config.resultRendering === false
+			config.hasCustomResults === false
 				? false
-				: this.defaultConfig.resultRendering,
+				: this.defaultConfig.hasCustomResults,
 			this.mapsDataService,
 			config.resultEl,
 			config.resultsContainer,
@@ -117,10 +117,10 @@ export default class DealerLocator {
 	/* Public ---------------------------------------------------------------------------------- */
 
 	/**
-	 * calls MapsDataSource to prefill data if no urlGenerator is passed
+	 * calls MapsDataSource to set data if no urlGenerator is passed
 	 * @param {Array} data
 	 */
-	prefillData(data) {
+	setData(data) {
 		this.mapsDataService.setData(data);
 	}
 
