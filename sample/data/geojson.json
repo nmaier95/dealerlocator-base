@@ -1,0 +1,54 @@
+{
+    "success": true,
+    "error": "",
+    "results": [
+        {
+            "id": 13,
+            "properties": {
+                "dealerName": "Cool features GmbH <script>alert('ipsum');</script>",
+                "productCategories": ["kategory3"],
+                "sections": ["section1","section3"]
+            },
+            "geometry": {
+                "lng": 8.452127,
+                "lat": 50.100924
+			}
+        },
+        {
+            "id": 14,
+            "properties": {
+                "dealerName": "Super Sales GmbH <p>Lorem</p>",
+                "productCategories": ["kategory2"],
+                "sections": ["section1","section2"]
+            },
+            "geometry": {
+                "lng": 8.682127,
+                "lat": 50.110924
+			}
+        },
+        {
+            "id": 15,
+            "properties": {
+                "dealerName": "Cool features GmbH",
+                "productCategories": ["kategory1","kategory2"],
+                "sections": ["section2"]
+            },
+            "geometry": {
+                "lng": 8.352127,
+                "lat": 50.300024
+			}
+        },
+        {
+            "id": 16,
+            "properties": {
+                "dealerName": "Super Sales GmbH",
+                "productCategories": ["kategory1","kategory2"],
+                "sections": ["section1"]
+            },
+            "geometry": {
+                "lng": 8.252127,
+                "lat": 50.000224
+			}
+        }
+    ]
+}

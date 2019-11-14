@@ -1,0 +1,200 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<main>
+			<div>
+				<form>
+					<input type="text" placeholder="PLZ or City" class="m-dealerlocator__searchinput">
+					<select class="m-dealerlocator__filter">
+						<option value="default">Select a filter... </option>
+						<option value="sections-section1">section 1 </option>
+						<option value="sections-section2">section 2 </option>
+						<option value="productCategories-kategory1">kategory1</option>
+						<option value="productCategories-kategory2">kategory2 </option>
+						<option value="productCategories-kategory3">kategory3n </option>
+					</select>
+					<button class="m-dealerlocator__formSubmitBtn" href="Javascript:;">
+						<span class="e-cta__text">Submit </span>
+					</button>
+					<a class="m-dealerlocator__locateBtn" href="Javascript:;">
+						<span>
+							Locate-Btn
+						</span>
+					</a>
+				</form>
+				<div class="m-dealerlocator__mapContainer">
+					<ul class="m-dealerlocator__results">
+
+					</ul>
+					<div class="m-dealerlocator__map" id="m-dealerlocator__googleMapContainer" style="height: 500px; position: relative; overflow: hidden;">
+
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<script type="text/template" class="gmapInfoTemplate">
+			<div>
+				<p>{dealerName}</p>
+				<p>{city}</p>
+				<p>{street}</p>
+				<p>{zipCode} {city}</p>
+				<p>{continent}, {country}</p>
+				<a href="mailto:{email}">contact</a>
+			</div>
+		</script>
+		<script type="text/template" class="customSearchResultItemTemplate">
+			<li class="m-dealerlocator__result" data-id="{id}">
+				<p>{dealerName}</p>
+				<p class="m-dealerlocator__result-text is-hidden">{distance} km away</p>
+			</li>
+		</script>
+		<script src="./../dist/var/bundle.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+			$(document).ready(function() {
+				setTimeout(function() {
+					function getQueryVariable(variable) {
+						var query = window.location.search.substring(1);
+						var vars = query.split("&");
+						for (var i=0;i<vars.length;i++) {
+							var pair = vars[i].split("=");
+							if (encodeURIComponent(pair[0]) == variable) {
+								return encodeURIComponent(pair[1]);
+							}
+						}
+						//not found
+						return false;
+					}
+
+					/**
+					* for sample/testing purpose only, has to be defined inside of actual page
+					*
+					* @param {any} options
+					* @returns
+					*/
+					window.defaultUrlGenerator = function(options) {
+						var url = '/sample/data/geojson';
+						if(options.ids.length > 0 || options.extended === true) {
+							url+= "-extended";
+						}
+						url+= '.json';
+						return url;
+					}
+
+
+					var mapConfig = {
+						zoom: parseInt(getQueryVariable("zoom")) || 8,
+						center: {
+							lat: parseFloat(decodeURI(getQueryVariable("lat"))) || 50.110924,
+							lng: parseFloat(decodeURI(getQueryVariable("lng"))) || 8.682127
+						},
+						maxClusterZoom: 6,
+						iconPath: "/sample/data",
+						// distance cannot change its name/key for example to calculatedDistance, it can only be set or not
+						templateVars: ["distance", "dealerName", "city", "street", "zipCode", "continent", "country", "email", "salesPerson"],
+						templateDelimiters: ["{", "}"]
+					};
+
+
+					window.dealerLocator = new DL.DealerLocator({
+						mapContainer: "m-dealerlocator__googleMapContainer",
+						resultEl: ".m-dealerlocator__result",
+						resultsContainer: ".m-dealerlocator__results",
+						apiKey: "AIzaSyBl7qyfZjFdjOKOiVdsukXzhRGTcDCOFak",
+						computeDistanceBetweenPoints: function(clientPos, pointerPos) {
+							var pointer = new google.maps.LatLng({lat: pointerPos.lat, lng: pointerPos.lng});
+							return google.maps.geometry.spherical.computeDistanceBetween(clientPos, pointer);
+						},
+						urlGenerator: function(options) {
+							var url = '/sample/data/geojson';
+							if(options.ids.length > 0 || options.extended === true) {
+								url+= "-extended";
+							}
+							url+= '.json';
+							return url;
+						},
+						mapOptions: mapConfig
+					});
+
+
+					dealerLocator.initializeMap().then(function() {
+						if(getQueryVariable("address")) {
+							dealerLocator.searchFor(decodeURI(getQueryVariable("address")));
+						}
+						else {
+							dealerLocator.showAll();
+						}
+					});
+
+					//ui-events
+					$(".m-dealerlocator__locateBtn").on("click", function(e) {
+						e.preventDefault();
+
+						dealerLocator.locateUser(9999, 13).then(function() {
+							console.log("user located");
+							dealerLocator.updateView();
+						})
+						.catch(function(e) {
+							console.log("error: ", e);
+							console.log("most likely only works with secure origins");
+						});
+					});
+
+					$(".m-dealerlocator__formSubmitBtn").on("click", function(e) {
+						//comment/uncomment to test maxResults
+						//dealerLocator.setMaxResults();
+						onSubmit(e);
+					});
+
+					$(".m-dealerlocator__form").on("submit", function(e) {
+						onSubmit(e);
+					});
+
+					$(".m-dealerlocator__filter").on("change", function(e) {
+						//comment/uncomment to test maxResults
+						//dealerLocator.setMaxResults(2);
+						var filterOptions = $(e.currentTarget).val().split("-");
+						if(filterOptions.length < 2) {
+							dealerLocator.removeFilterType("property");
+						}
+						else {
+							dealerLocator.addFilterFor(filterOptions[0], filterOptions[1]);
+						}
+						dealerLocator.updateView();
+					});
+
+
+					function onSubmit(e) {
+						e.preventDefault();
+						var address = $(".m-dealerlocator__searchinput").val();
+
+						if(address != "") {
+							dealerLocator.searchFor(address, 9999)
+								.then(function() {
+									//dealerLocator.setMapZoom(13);
+									//dealerLocator.updateView();
+								})
+								.catch(function(e) {console.log("error finding address: ", e);});
+						} else {
+							dealerLocator.showAll().then(function() {
+								dealerLocator.setMapZoom(8);
+								dealerLocator.updateView();
+							});
+						}
+
+					}
+				}, 2000);
+			});
+        </script>
+	</body>
+</html>
