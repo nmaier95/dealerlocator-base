@@ -19,6 +19,7 @@ jobs:
         run: |
             npm i
             npm run build
+            npm config set '//registry.npmjs.org/:_authToken' "${NPM_AUTH_TOKEN}"
             npm publish ./ --tag ${{ github.ref }}
       - name: Create Release
         id: create_release
