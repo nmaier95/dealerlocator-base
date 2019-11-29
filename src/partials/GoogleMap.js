@@ -94,7 +94,7 @@ export default class GoogleMap {
 			s.src =
 				'https://maps.googleapis.com/maps/api/js?key=' +
 				this.apiKey +
-				'&callback=onGoogleApiLoaded&libraries=geometry';
+				'&callback=onGoogleApiLoaded&libraries=geometry,places';
 			window.onGoogleApiLoaded = function() {
 				self._onGoogleMapsLoad();
 				self._isLoaded = true;
