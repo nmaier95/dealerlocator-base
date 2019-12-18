@@ -50,8 +50,10 @@ export default class DealerLocator {
 					lng: 8.682127,
 				},
 				clickableIcons: true, // optional property
-				maxClusterZoom: 6,
-				clusterIconPath: './data',
+				clusterConfig: {
+					maxZoom: 8,
+					imagePath: './resources/images/google-cluster',
+				},
 				// visit https://developers.google.com/maps/documentation/javascript/markers for more config options
 				iconConfig: {
 					url: '',

@@ -150,11 +150,11 @@ export default class GoogleMap {
 	 * @memberof ClientGoogleMap
 	 */
 	_initClusterer() {
-		this.markerCluster = new MarkerClusterer(this.map, this._markers, {
-			imagePath: this.defaultMapConfig.clusterIconPath + '/m',
-			//the smaller maxZoom, the further zoomed out markers will become clustered
-			maxZoom: this.defaultMapConfig.maxClusterZoom,
-		});
+		this.markerCluster = new MarkerClusterer(
+			this.map,
+			this._markers,
+			this.defaultMapConfig.clusterConfig,
+		);
 	}
 
 	/**

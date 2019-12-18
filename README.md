@@ -7,13 +7,9 @@
 <dd></dd>
 <dt><a href="#MapsDataSource">MapsDataSource</a></dt>
 <dd></dd>
-</dl>
-
-## Members
-
-<dl>
-<dt><a href="#clusters_">clusters_</a> : <code><a href="#new_Cluster_new">Array.&lt;Cluster&gt;</a></code></dt>
-<dd></dd>
+<dt><a href="#MarkerClusterer">MarkerClusterer</a> ⇐ <code>google.maps.OverlayView</code></dt>
+<dd><p>A Marker Clusterer that clusters markers.</p>
+</dd>
 </dl>
 
 ## Functions
@@ -436,10 +432,316 @@ This may trigger a api request.
 | --- | --- |
 | ids | <code>any</code> | 
 
-<a name="clusters_"></a>
+<a name="MarkerClusterer"></a>
 
-## clusters\_ : [<code>Array.&lt;Cluster&gt;</code>](#new_Cluster_new)
-**Kind**: global variable  
+## MarkerClusterer ⇐ <code>google.maps.OverlayView</code>
+A Marker Clusterer that clusters markers.
+
+**Kind**: global class  
+**Extends**: <code>google.maps.OverlayView</code>  
+
+* [MarkerClusterer](#MarkerClusterer) ⇐ <code>google.maps.OverlayView</code>
+    * [new MarkerClusterer(map, [opt_markers], [opt_options])](#new_MarkerClusterer_new)
+    * [.clusters_](#MarkerClusterer+clusters_) : [<code>Array.&lt;Cluster&gt;</code>](#new_Cluster_new)
+    * [.zIndex_](#MarkerClusterer+zIndex_) : <code>number</code>
+    * [.fitMapToMarkers()](#MarkerClusterer+fitMapToMarkers)
+    * [.setZIndex(zIndex)](#MarkerClusterer+setZIndex)
+    * [.getZIndex()](#MarkerClusterer+getZIndex) ⇒ <code>number</code>
+    * [.setStyles(styles)](#MarkerClusterer+setStyles)
+    * [.getStyles()](#MarkerClusterer+getStyles) ⇒ <code>Object</code>
+    * [.isZoomOnClick()](#MarkerClusterer+isZoomOnClick) ⇒ <code>boolean</code>
+    * [.isAverageCenter()](#MarkerClusterer+isAverageCenter) ⇒ <code>boolean</code>
+    * [.getMarkers()](#MarkerClusterer+getMarkers) ⇒ <code>Array.&lt;google.maps.Marker&gt;</code>
+    * [.getTotalMarkers()](#MarkerClusterer+getTotalMarkers) ⇒ <code>Number</code>
+    * [.setMaxZoom(maxZoom)](#MarkerClusterer+setMaxZoom)
+    * [.getMaxZoom()](#MarkerClusterer+getMaxZoom) ⇒ <code>number</code>
+    * [.setCalculator(calculator)](#MarkerClusterer+setCalculator)
+    * [.getCalculator()](#MarkerClusterer+getCalculator) ⇒ <code>function</code>
+    * [.addMarkers(markers, [opt_nodraw])](#MarkerClusterer+addMarkers)
+    * [.addMarker(marker, [opt_nodraw])](#MarkerClusterer+addMarker)
+    * [.removeMarker(marker, [opt_nodraw])](#MarkerClusterer+removeMarker) ⇒ <code>boolean</code>
+    * [.removeMarkers(markers, [opt_nodraw])](#MarkerClusterer+removeMarkers)
+    * [.getTotalClusters()](#MarkerClusterer+getTotalClusters) ⇒ <code>number</code>
+    * [.getMap()](#MarkerClusterer+getMap) ⇒ <code>google.maps.Map</code>
+    * [.setMap(map)](#MarkerClusterer+setMap)
+    * [.getGridSize()](#MarkerClusterer+getGridSize) ⇒ <code>number</code>
+    * [.setGridSize(size)](#MarkerClusterer+setGridSize)
+    * [.getMinClusterSize()](#MarkerClusterer+getMinClusterSize) ⇒ <code>number</code>
+    * [.setMinClusterSize(size)](#MarkerClusterer+setMinClusterSize)
+    * [.getExtendedBounds(bounds)](#MarkerClusterer+getExtendedBounds) ⇒ <code>google.maps.LatLngBounds</code>
+    * [.clearMarkers()](#MarkerClusterer+clearMarkers)
+    * [.resetViewport(opt_hide)](#MarkerClusterer+resetViewport)
+    * [.repaint()](#MarkerClusterer+repaint)
+    * [.redraw()](#MarkerClusterer+redraw)
+
+<a name="new_MarkerClusterer_new"></a>
+
+### new MarkerClusterer(map, [opt_markers], [opt_options])
+
+| Param | Type | Description |
+| --- | --- | --- |
+| map | <code>google.maps.Map</code> | The Google map to attach to. |
+| [opt_markers] | <code>Array.&lt;google.maps.Marker&gt;</code> | Optional markers to add to   the cluster. |
+| [opt_options] | <code>Object</code> | support the following options:     'gridSize': (number) The grid size of a cluster in pixels.     'maxZoom': (number) The maximum zoom level that a marker can be part of a                cluster.     'zoomOnClick': (boolean) Whether the default behaviour of clicking on a                    cluster is to zoom into it.     'imagePath': (string) The base URL where the images representing                  clusters will be found. The full URL will be:                  {imagePath}[1-5].{imageExtension}                  Default: '../images/m'.     'imageExtension': (string) The suffix for images URL representing                       clusters will be found. See _imagePath_ for details.                       Default: 'png'.     'averageCenter': (boolean) Whether the center of each cluster should be                      the average of all markers in the cluster.     'minimumClusterSize': (number) The minimum number of markers to be in a                           cluster before the markers are hidden and a count                           is shown.     'zIndex': (number) the z-index of a cluster.               Default: google.maps.Marker.MAX_ZINDEX + 1     'styles': (Array.<Object>) An Array of single object that has style properties for all cluster:       'url': (string) The image url.       'height': (number) The image height.       'width': (number) The image width.       'anchor': (Array) The anchor position of the label text.       'textColor': (string) The text color.       'textSize': (number) The text size.       'backgroundPosition': (string) The position of the backgound x, y. |
+
+<a name="MarkerClusterer+clusters_"></a>
+
+### markerClusterer.clusters\_ : [<code>Array.&lt;Cluster&gt;</code>](#new_Cluster_new)
+**Kind**: instance property of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+<a name="MarkerClusterer+zIndex_"></a>
+
+### markerClusterer.zIndex\_ : <code>number</code>
+**Kind**: instance property of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+<a name="MarkerClusterer+fitMapToMarkers"></a>
+
+### markerClusterer.fitMapToMarkers()
+Fit the map to the bounds of the markers in the clusterer.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+<a name="MarkerClusterer+setZIndex"></a>
+
+### markerClusterer.setZIndex(zIndex)
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type |
+| --- | --- |
+| zIndex | <code>number</code> | 
+
+<a name="MarkerClusterer+getZIndex"></a>
+
+### markerClusterer.getZIndex() ⇒ <code>number</code>
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+<a name="MarkerClusterer+setStyles"></a>
+
+### markerClusterer.setStyles(styles)
+Sets the styles.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| styles | <code>Object</code> | The style to set. |
+
+<a name="MarkerClusterer+getStyles"></a>
+
+### markerClusterer.getStyles() ⇒ <code>Object</code>
+Gets the styles.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>Object</code> - The styles object.  
+<a name="MarkerClusterer+isZoomOnClick"></a>
+
+### markerClusterer.isZoomOnClick() ⇒ <code>boolean</code>
+Whether zoom on click is set.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>boolean</code> - True if zoomOnClick_ is set.  
+<a name="MarkerClusterer+isAverageCenter"></a>
+
+### markerClusterer.isAverageCenter() ⇒ <code>boolean</code>
+Whether average center is set.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>boolean</code> - True if averageCenter_ is set.  
+<a name="MarkerClusterer+getMarkers"></a>
+
+### markerClusterer.getMarkers() ⇒ <code>Array.&lt;google.maps.Marker&gt;</code>
+Returns the array of markers in the clusterer.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>Array.&lt;google.maps.Marker&gt;</code> - The markers.  
+<a name="MarkerClusterer+getTotalMarkers"></a>
+
+### markerClusterer.getTotalMarkers() ⇒ <code>Number</code>
+Returns the number of markers in the clusterer
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>Number</code> - The number of markers.  
+<a name="MarkerClusterer+setMaxZoom"></a>
+
+### markerClusterer.setMaxZoom(maxZoom)
+Sets the max zoom for the clusterer.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| maxZoom | <code>number</code> | The max zoom level. |
+
+<a name="MarkerClusterer+getMaxZoom"></a>
+
+### markerClusterer.getMaxZoom() ⇒ <code>number</code>
+Gets the max zoom for the clusterer.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>number</code> - The max zoom level.  
+<a name="MarkerClusterer+setCalculator"></a>
+
+### markerClusterer.setCalculator(calculator)
+Set the calculator function.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| calculator | <code>function</code> | The function to set as the     calculator. The function should return a object properties:     'text' (string) and 'index' (number). |
+
+<a name="MarkerClusterer+getCalculator"></a>
+
+### markerClusterer.getCalculator() ⇒ <code>function</code>
+Get the calculator function.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>function</code> - the calculator function.  
+<a name="MarkerClusterer+addMarkers"></a>
+
+### markerClusterer.addMarkers(markers, [opt_nodraw])
+Add an array of markers to the clusterer.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| markers | <code>Array.&lt;google.maps.Marker&gt;</code> | The markers to add. |
+| [opt_nodraw] | <code>boolean</code> | Whether to redraw the clusters. |
+
+<a name="MarkerClusterer+addMarker"></a>
+
+### markerClusterer.addMarker(marker, [opt_nodraw])
+Adds a marker to the clusterer and redraws if needed.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| marker | <code>google.maps.Marker</code> | The marker to add. |
+| [opt_nodraw] | <code>boolean</code> | Whether to redraw the clusters. |
+
+<a name="MarkerClusterer+removeMarker"></a>
+
+### markerClusterer.removeMarker(marker, [opt_nodraw]) ⇒ <code>boolean</code>
+Remove a marker from the cluster.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>boolean</code> - True if the marker was removed.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| marker | <code>google.maps.Marker</code> | The marker to remove. |
+| [opt_nodraw] | <code>boolean</code> | Optional boolean to force no redraw. |
+
+<a name="MarkerClusterer+removeMarkers"></a>
+
+### markerClusterer.removeMarkers(markers, [opt_nodraw])
+Removes an array of markers from the cluster.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| markers | <code>Array.&lt;google.maps.Marker&gt;</code> | The markers to remove. |
+| [opt_nodraw] | <code>boolean</code> | Optional boolean to force no redraw. |
+
+<a name="MarkerClusterer+getTotalClusters"></a>
+
+### markerClusterer.getTotalClusters() ⇒ <code>number</code>
+Returns the number of clusters in the clusterer.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>number</code> - The number of clusters.  
+<a name="MarkerClusterer+getMap"></a>
+
+### markerClusterer.getMap() ⇒ <code>google.maps.Map</code>
+Returns the google map that the clusterer is associated with.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>google.maps.Map</code> - The map.  
+<a name="MarkerClusterer+setMap"></a>
+
+### markerClusterer.setMap(map)
+Sets the google map that the clusterer is associated with.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| map | <code>google.maps.Map</code> | The map. |
+
+<a name="MarkerClusterer+getGridSize"></a>
+
+### markerClusterer.getGridSize() ⇒ <code>number</code>
+Returns the size of the grid.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>number</code> - The grid size.  
+<a name="MarkerClusterer+setGridSize"></a>
+
+### markerClusterer.setGridSize(size)
+Sets the size of the grid.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| size | <code>number</code> | The grid size. |
+
+<a name="MarkerClusterer+getMinClusterSize"></a>
+
+### markerClusterer.getMinClusterSize() ⇒ <code>number</code>
+Returns the min cluster size.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>number</code> - The grid size.  
+<a name="MarkerClusterer+setMinClusterSize"></a>
+
+### markerClusterer.setMinClusterSize(size)
+Sets the min cluster size.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| size | <code>number</code> | The grid size. |
+
+<a name="MarkerClusterer+getExtendedBounds"></a>
+
+### markerClusterer.getExtendedBounds(bounds) ⇒ <code>google.maps.LatLngBounds</code>
+Extends a bounds object by the grid size.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+**Returns**: <code>google.maps.LatLngBounds</code> - The extended bounds.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| bounds | <code>google.maps.LatLngBounds</code> | The bounds to extend. |
+
+<a name="MarkerClusterer+clearMarkers"></a>
+
+### markerClusterer.clearMarkers()
+Clears all clusters and markers from the clusterer.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+<a name="MarkerClusterer+resetViewport"></a>
+
+### markerClusterer.resetViewport(opt_hide)
+Clears all existing clusters and recreates them.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| opt_hide | <code>boolean</code> | To also hide the marker. |
+
+<a name="MarkerClusterer+repaint"></a>
+
+### markerClusterer.repaint()
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+<a name="MarkerClusterer+redraw"></a>
+
+### markerClusterer.redraw()
+Redraws the clusters.
+
+**Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
 <a name="setData"></a>
 
 ## setData(data)
