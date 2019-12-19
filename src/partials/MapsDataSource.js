@@ -11,8 +11,9 @@ export default class MapsDataSource {
 
 	/* Initialize ------------------------------------------------------------------------------ */
 
-	constructor(urlGenerator) {
+	constructor(urlGenerator, requestType) {
 		this._urlGenerator = urlGenerator || window.defaultUrlGenerator;
+		this._requestType = requestType;
 		this._data = null;
 	}
 
@@ -155,7 +156,7 @@ export default class MapsDataSource {
 					ids: ids,
 				});
 
-				this.request(apiUrl, {})
+				this.request(apiUrl, { method: this._requestType })
 					.then((result) => {
 						if (result.success && result.data.success) {
 							resolve(this.mergeData(result.data.results));

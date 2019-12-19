@@ -63,6 +63,7 @@ export default class DealerLocator {
 				templateDelimiters: [],
 			},
 			urlGenerator: () => undefined,
+			requestType: 'GET',
 			mapsDataSource: MapsDataSource,
 			mapsDataService: MapsDataService,
 			googleMap: GoogleMap,
@@ -90,9 +91,10 @@ export default class DealerLocator {
 				: this.defaultConfig.googleMap,
 			urlGenerator = config.urlGenerator
 				? config.urlGenerator
-				: undefined;
+				: undefined,
+			requestType = config.requestType || this.defaultConfig.requestType;
 
-		this.mapsDataSource = new Source(urlGenerator);
+		this.mapsDataSource = new Source(urlGenerator, requestType);
 		this.mapsDataService = new Service(
 			this.mapsDataSource,
 			config.computeDistanceBetweenPoints,
