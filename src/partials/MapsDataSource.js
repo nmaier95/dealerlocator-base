@@ -14,6 +14,7 @@ export default class MapsDataSource {
 	constructor(urlGenerator, requestType) {
 		this._urlGenerator = urlGenerator || window.defaultUrlGenerator;
 		this._requestType = requestType;
+		this._requestData = null;
 		this._data = null;
 	}
 
@@ -100,8 +101,8 @@ export default class MapsDataSource {
 				} else {
 					xmlRequest.send(options.body);
 				}
-			} else if (options.formData) {
-				xmlRequest.send(options.formData);
+			} else if (options.payload) {
+				xmlRequest.send(options.payload);
 			} else {
 				xmlRequest.send();
 			}
@@ -156,7 +157,12 @@ export default class MapsDataSource {
 					ids: ids,
 				});
 
-				this.request(apiUrl, { method: this._requestType })
+				const options = {
+					method: this._requestType,
+					payload: this._requestData,
+				};
+
+				this.request(apiUrl, options)
 					.then((result) => {
 						if (result.success && result.data.success) {
 							resolve(this.mergeData(result.data.results));
