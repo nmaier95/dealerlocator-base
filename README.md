@@ -18,6 +18,10 @@
 <dt><a href="#setData">setData(data)</a></dt>
 <dd><p>calls MapsDataSource to set data if no urlGenerator is passed</p>
 </dd>
+<dt><a href="#setRequestOptions">setRequestOptions(requestOptions)</a></dt>
+<dd><p>set requestOptions used in MapsDataSource to fetch data
+requestOptions can contain: method, payload, formData</p>
+</dd>
 <dt><a href="#replaceTemplateVar">replaceTemplateVar(tmpl, templateVar, delimiters, properties)</a> ⇒ <code>htmlString</code></dt>
 <dd><p>Replaces template vars in passed template.
 Escapes html to prevent xss and tries to replace html encoded templatevars as well</p>
@@ -752,6 +756,18 @@ calls MapsDataSource to set data if no urlGenerator is passed
 | Param | Type |
 | --- | --- |
 | data | <code>Array</code> | 
+
+<a name="setRequestOptions"></a>
+
+## setRequestOptions(requestOptions)
+set requestOptions used in MapsDataSource to fetch data
+requestOptions can contain: method, payload, formData
+
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| requestOptions | <code>Object</code> | 
 
 <a name="replaceTemplateVar"></a>
 

@@ -63,7 +63,10 @@ export default class DealerLocator {
 				templateDelimiters: [],
 			},
 			urlGenerator: () => undefined,
-			requestType: 'GET',
+			requestOptions: {
+				method: 'GET',
+				payload: null,
+			},
 			mapsDataSource: MapsDataSource,
 			mapsDataService: MapsDataService,
 			googleMap: GoogleMap,
@@ -92,9 +95,10 @@ export default class DealerLocator {
 			urlGenerator = config.urlGenerator
 				? config.urlGenerator
 				: undefined,
-			requestType = config.requestType || this.defaultConfig.requestType;
+			requestOptions =
+				config.requestOptions || this.defaultConfig.requestOptions;
 
-		this.mapsDataSource = new Source(urlGenerator, requestType);
+		this.mapsDataSource = new Source(urlGenerator, requestOptions);
 		this.mapsDataService = new Service(
 			this.mapsDataSource,
 			config.computeDistanceBetweenPoints,
@@ -126,6 +130,15 @@ export default class DealerLocator {
 	 */
 	setData(data) {
 		this.mapsDataService.setData(data);
+	}
+
+	/**
+	 * set requestOptions used in MapsDataSource to fetch data
+	 * requestOptions can contain: method, payload, formData
+	 * @param {Object} requestOptions
+	 */
+	setRequestOptions(requestOptions) {
+		this.mapsDataSource.requestOptions = requestOptions;
 	}
 
 	/**

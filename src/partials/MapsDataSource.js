@@ -9,11 +9,15 @@ export default class MapsDataSource {
 		return this._data;
 	}
 
+	set requestOptions(requestOptions) {
+		this._requestOptions = requestOptions;
+	}
+
 	/* Initialize ------------------------------------------------------------------------------ */
 
-	constructor(urlGenerator, requestType) {
+	constructor(urlGenerator, requestOptions) {
 		this._urlGenerator = urlGenerator || window.defaultUrlGenerator;
-		this._requestType = requestType;
+		this._requestOptions = requestOptions;
 		this._requestData = null;
 		this._data = null;
 	}
@@ -63,10 +67,9 @@ export default class MapsDataSource {
 	 * @param {String} url
 	 * @param {Object}
 	 */
-	request(url, options) {
+	request(url, options = this._requestOptions) {
 		const scope = this;
 		const promise = new Promise((resolve, reject) => {
-			const opts = options || {};
 			const xmlRequest = new XMLHttpRequest();
 			xmlRequest.addEventListener('load', (event) => {
 				resolve(scope.buildResult(event, options));
@@ -80,7 +83,7 @@ export default class MapsDataSource {
 			xmlRequest.addEventListener('timeout', (event) => {
 				resolve(scope.buildResult(event, options));
 			});
-			xmlRequest.open(opts.method || 'GET', url);
+			xmlRequest.open(options.method || 'GET', url);
 			if (typeof options.acceptType != 'undefined') {
 				if (options.acceptType) {
 					xmlRequest.setRequestHeader('accept', options.acceptType);
@@ -101,8 +104,8 @@ export default class MapsDataSource {
 				} else {
 					xmlRequest.send(options.body);
 				}
-			} else if (options.payload) {
-				xmlRequest.send(options.payload);
+			} else if (options.formData) {
+				xmlRequest.send(options.formData);
 			} else {
 				xmlRequest.send();
 			}
@@ -157,12 +160,7 @@ export default class MapsDataSource {
 					ids: ids,
 				});
 
-				const options = {
-					method: this._requestType,
-					payload: this._requestData,
-				};
-
-				this.request(apiUrl, options)
+				this.request(apiUrl, this._requestOptions)
 					.then((result) => {
 						if (result.success && result.data.success) {
 							resolve(this.mergeData(result.data.results));
