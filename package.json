@@ -1,6 +1,6 @@
 {
   "name": "dealerlocator-base",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Base Version of a dealerlocator API",
   "main": "dist/commonjs/bundle.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "husky": "^3.0.7",
     "jsdoc-to-markdown": "^5.0.1",
     "prettier": "^1.18.2",
-    "uglifyjs-webpack-plugin": "^2.2.0",
+    "terser-webpack-plugin": "^2.3.2",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
   },
