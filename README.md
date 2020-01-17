@@ -12,6 +12,14 @@
 </dd>
 </dl>
 
+## Members
+
+<dl>
+<dt><a href="#requestOptions">requestOptions</a></dt>
+<dd><p>requestOptions can contain: method, acceptType, body, formData, transformer</p>
+</dd>
+</dl>
+
 ## Functions
 
 <dl>
@@ -20,7 +28,7 @@
 </dd>
 <dt><a href="#setRequestOptions">setRequestOptions(requestOptions)</a></dt>
 <dd><p>set requestOptions used in MapsDataSource to fetch data
-requestOptions can contain: method, payload, formData</p>
+requestOptions can contain: method, acceptType, body, formData, transformer</p>
 </dd>
 <dt><a href="#replaceTemplateVar">replaceTemplateVar(tmpl, templateVar, delimiters, properties)</a> ⇒ <code>htmlString</code></dt>
 <dd><p>Replaces template vars in passed template.
@@ -746,6 +754,17 @@ Clears all existing clusters and recreates them.
 Redraws the clusters.
 
 **Kind**: instance method of [<code>MarkerClusterer</code>](#MarkerClusterer)  
+<a name="requestOptions"></a>
+
+## requestOptions
+requestOptions can contain: method, acceptType, body, formData, transformer
+
+**Kind**: global variable  
+
+| Param | Type |
+| --- | --- |
+| requestOptions | <code>Object</code> | 
+
 <a name="setData"></a>
 
 ## setData(data)
@@ -761,7 +780,7 @@ calls MapsDataSource to set data if no urlGenerator is passed
 
 ## setRequestOptions(requestOptions)
 set requestOptions used in MapsDataSource to fetch data
-requestOptions can contain: method, payload, formData
+requestOptions can contain: method, acceptType, body, formData, transformer
 
 **Kind**: global function  
 

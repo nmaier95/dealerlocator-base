@@ -1,6 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const jsdoc2md = require('jsdoc-to-markdown');
 const fs = require('fs');
 
@@ -13,19 +12,15 @@ module.exports = {
     entry: [path.resolve(__dirname, 'src', 'index.js')],
 
     output: {
-		filename: 'bundle.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist', exportType),
         libraryTarget: exportType,
         library: exportType === 'var' ? 'DL' : '',
     },
 
     optimization: {
-        minimizer: [
-            // uglify only kicks in when mode = production
-            new UglifyJsPlugin({
-                parallel: true
-            })
-        ],
+        minimize: true,
+        minimizer: [new TerserPlugin()],
     },
 
     module: {
@@ -46,7 +41,7 @@ module.exports = {
         {
             apply: (compiler) => {
                 compiler.hooks.done.tap('DonePlugin', (stats) => {
-                    const output = jsdoc2md.renderSync({ files: './src/partials/**/*.js'});
+                    const output = jsdoc2md.renderSync({ files: './src/partials/**/*.js' });
                     fs.writeFileSync('README.md', output);
                 });
             }
