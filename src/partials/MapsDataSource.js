@@ -9,6 +9,10 @@ export default class MapsDataSource {
 		return this._data;
 	}
 
+	/**
+	 * requestOptions can contain: method, acceptType, body, formData, transformer
+	 * @param {Object} requestOptions
+	 */
 	set requestOptions(requestOptions) {
 		this._requestOptions = requestOptions;
 	}

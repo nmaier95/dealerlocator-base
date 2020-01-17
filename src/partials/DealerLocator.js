@@ -134,7 +134,7 @@ export default class DealerLocator {
 
 	/**
 	 * set requestOptions used in MapsDataSource to fetch data
-	 * requestOptions can contain: method, payload, formData
+	 * requestOptions can contain: method, acceptType, body, formData, transformer
 	 * @param {Object} requestOptions
 	 */
 	setRequestOptions(requestOptions) {
