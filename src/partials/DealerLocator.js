@@ -65,7 +65,7 @@ export default class DealerLocator {
 			urlGenerator: () => undefined,
 			requestOptions: {
 				method: 'GET',
-				payload: null,
+				body: null,
 			},
 			mapsDataSource: MapsDataSource,
 			mapsDataService: MapsDataService,
