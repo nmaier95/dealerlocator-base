@@ -102,7 +102,7 @@ export default class MapsDataSource {
 			} else {
 				xmlRequest.setRequestHeader(
 					'accept',
-					'application/vnd.collection+json',
+					options.accept || 'application/vnd.collection+json',
 				);
 			}
 			if (options.body) {
