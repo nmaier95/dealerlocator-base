@@ -6,6 +6,10 @@
 export default class MapsDataService {
 	/* Properties ------------------------------------------------------------------------------ */
 
+	/**
+	 *
+	 * @param {number} max
+	 */
 	set maxResults(max) {
 		this._maxResults = max;
 	}
@@ -15,8 +19,7 @@ export default class MapsDataService {
 	/**
 	 * Creates an instance of MapsDataService.
 	 * @param {MapsDataSource} mapsDataSource
-	 * @param {GoogleMap} googleMap
-	 * @memberof MapsDataService
+	 * @param {Function|undefined} computeDistanceBetweenPoints
 	 */
 	constructor(mapsDataSource, computeDistanceBetweenPoints) {
 		this.mapsDataSource = mapsDataSource;
@@ -32,7 +35,8 @@ export default class MapsDataService {
 	 * sorts by distance for radius-filter as well
 	 * applies maxResults limit if maxResults isset
 	 *
-	 * @returns {Promise}
+	 * @param {array} data
+	 * @returns {*}
 	 */
 	applyFilters(data) {
 		if (!this.filters.length) {
@@ -96,9 +100,8 @@ export default class MapsDataService {
 	 * if class-property maxResults isset (!= undefined), the passed data gets sliced down to maxResults number and returned
 	 * else a copy of the data-param-object gets returned
 	 *
-	 * @param {any} data
-	 * @returns {object}
-	 * @memberof MapsDataService
+	 * @param {array} data
+	 * @returns {array}
 	 */
 	applyMaxResult(data) {
 		return this._maxResults
@@ -111,7 +114,7 @@ export default class MapsDataService {
 	/**
 	 * returns filtered data
 	 *
-	 * @returns {Promise}
+	 * @returns {Promise<undefined>}
 	 */
 	getItems() {
 		return new Promise((resolve, reject) => {
@@ -125,7 +128,8 @@ export default class MapsDataService {
 	/**
 	 * prefills data of maps data source if no urlGenerator is passed
 	 *
-	 * @param {any} data
+	 * @param {array} data
+	 * @returns void
 	 */
 	setData(data) {
 		this.mapsDataSource.setData(data);
@@ -134,9 +138,9 @@ export default class MapsDataService {
 	/**
 	 * add filter-option, does not apply them to data yet
 	 *
-	 * @param {any} propName
+	 * @param {string} propName
 	 * @param {any} propValue
-	 * @memberof MapsDataService
+	 * @returns void
 	 */
 	addFilterFor(propName, propValue) {
 		this.filters.push({
@@ -149,9 +153,9 @@ export default class MapsDataService {
 	/**
 	 * remove a specific previously added filter-option, does not apply to data yet
 	 *
-	 * @param {any} propName
+	 * @param {string} propName
 	 * @param {any} propValue
-	 * @memberof MapsDataService
+	 * @returns void
 	 */
 	removeFilterFor(propName, propValue) {
 		this.filters = this.filters.filter(
@@ -165,9 +169,9 @@ export default class MapsDataService {
 	/**
 	 * add filter for radius search
 	 *
-	 * @param {any} center
-	 * @param {any} radius
-	 * @memberof MapsDataService
+	 * @param {number} center
+	 * @param {number} radius
+	 * @returns void
 	 */
 	addRadiusFilterFor(center, radius) {
 		this.filters.push({ type: 'radius', center: center, radius: radius });
@@ -176,7 +180,8 @@ export default class MapsDataService {
 	/**
 	 * remove filter of type "radius" or "property"
 	 *
-	 * @memberof MapsDataService
+	 * @param {string} type
+	 * @returns void
 	 */
 	removeFilterType(type) {
 		this.filters = this.filters.filter((item) => item.type != type);
@@ -185,7 +190,7 @@ export default class MapsDataService {
 	/**
 	 * reset all previously applied filters
 	 *
-	 * @memberof MapsDataService
+	 * @returns void
 	 */
 	resetFilters() {
 		this.filters = [];
@@ -195,8 +200,7 @@ export default class MapsDataService {
 	 * use to check if tuple/s has/have extended properties already loaded, if not it´ll be loaded
 	 *
 	 * @param {any} ids
-	 * @returns {Promise}
-	 * @memberof MapsDataService
+	 * @returns {Promise<array>}
 	 */
 	ensureDetailsFor(ids) {
 		return new Promise((resolve, reject) => {
@@ -210,7 +214,6 @@ export default class MapsDataService {
 	 * checks if any of the active filters is a radius filter, return true or false
 	 *
 	 * @returns {boolean}
-	 * @memberof MapsDataService
 	 */
 	hasActiveRadiusFilter() {
 		let hasRadiusFilter = false;

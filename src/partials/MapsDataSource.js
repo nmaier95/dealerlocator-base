@@ -5,12 +5,17 @@
  * @class MapsDataSource
  */
 export default class MapsDataSource {
+	/**
+	 *
+	 * @returns {null|array}
+	 */
 	get data() {
 		return this._data;
 	}
 
 	/**
-	 * requestOptions can contain: method, acceptType, body, formData, transformer
+	 * requestOptions can contain following keys: method, acceptType, body, formData, transformer
+	 *
 	 * @param {Object} requestOptions
 	 */
 	set requestOptions(requestOptions) {
@@ -29,10 +34,11 @@ export default class MapsDataSource {
 	/* Private --------------------------------------------------------------------------------- */
 
 	/**
-	 * Requests a json document
+	 * Formats request-response data
 	 *
-	 * @param {String} url
-	 * @param {Object}
+	 * @param {XMLHttpRequestEventTarget} event
+	 * @param {Object} options
+	 * @returns {{data: boolean, success: boolean, errorCode: number, error: undefined, status: *}}
 	 */
 	buildResult(event, options) {
 		const result = {
@@ -68,8 +74,9 @@ export default class MapsDataSource {
 	/**
 	 * Requests a json document
 	 *
-	 * @param {String} url
-	 * @param {Object}
+	 * @param {string} url
+	 * @param {Object} options
+	 * @returns {Promise<buildResult>}
 	 */
 	request(url, options = this._requestOptions) {
 		const scope = this;
@@ -119,7 +126,8 @@ export default class MapsDataSource {
 
 	/**
 	 *
-	 * @param  {any} data
+	 * @param  {array} data
+	 * @returns void
 	 */
 	setData(data) {
 		this._data = data;
@@ -128,9 +136,8 @@ export default class MapsDataSource {
 	/**
 	 * Merges the given array into the current data
 	 *
-	 * @param {any} data
-	 * @returns {any} this._data
-	 * @memberof MapsDataSource
+	 * @param {array} data
+	 * @returns {null|array}
 	 */
 	mergeData(data) {
 		if (!this._data) {
@@ -149,10 +156,9 @@ export default class MapsDataSource {
 	/**
 	 * Fetches data via the api and merges it
 	 *
-	 * @param {boolean} [extended=false]
-	 * @param {any} [ids=[]]
-	 * @returns {Promise}
-	 * @memberof MapsDataSource
+	 * @param {boolean} extended
+	 * @param {array} ids
+	 * @returns {Promise<undefined>}
 	 */
 	fetchDataFor(extended = false, ids = []) {
 		if (this._urlGenerator === undefined) {
@@ -181,8 +187,7 @@ export default class MapsDataSource {
 	 * Fetch all locations.
 	 * Will use cached data on subsequent calls.
 	 *
-	 * @returns {Promise}
-	 * @memberof MapsDataSource
+	 * @returns {Promise<array>}
 	 */
 	fetch() {
 		return new Promise((resolve, reject) => {
@@ -198,9 +203,8 @@ export default class MapsDataSource {
 	 * Ensures that all given id's contain all detail information.
 	 * This may trigger a api request.
 	 *
-	 * @param {any} ids
-	 * @returns {Promise}
-	 * @memberof MapsDataSource
+	 * @param {array} ids
+	 * @returns {Promise<array>}
 	 */
 	ensureDetailsFor(ids) {
 		return new Promise((resolve, reject) => {

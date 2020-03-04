@@ -27,8 +27,6 @@ export default class DealerLocator {
 	 * mapsDataService: optional {MapsDataService}
 	 * googleMap: optional {GoogleMap}
 	 *
-	 * @readonly
-	 * @memberof DealerLocator
 	 * @returns {Object}
 	 */
 	get defaultConfig() {
@@ -40,7 +38,7 @@ export default class DealerLocator {
 			hasCluster: true,
 			hasCustomResults: true,
 			cumputeDistanceBetweenPoints: () => {
-				return;
+				return false;
 			},
 			mapOptions: {
 				zoom: 8,
@@ -79,8 +77,7 @@ export default class DealerLocator {
 	 * Creates an instance of DealerLocator.
 	 * !! 'distance' and 'id' (items of key templateVars in mapOptions) are properties which cannot change their name/key !!
 	 *
-	 * @param {Object} config
-	 * @memberof DealerLocator
+	 * @param {defaultConfig} config
 	 */
 	constructor(config) {
 		const Service = config.mapsDataService
@@ -126,7 +123,9 @@ export default class DealerLocator {
 
 	/**
 	 * calls MapsDataSource to set data if no urlGenerator is passed
-	 * @param {Array} data
+	 *
+	 * @param {array} data
+	 * @returns void
 	 */
 	setData(data) {
 		this.mapsDataService.setData(data);
@@ -134,8 +133,10 @@ export default class DealerLocator {
 
 	/**
 	 * set requestOptions used in MapsDataSource to fetch data
-	 * requestOptions can contain: method, acceptType, body, formData, transformer
+	 * requestOptions can contain following keys: method, acceptType, body, formData, transformer
+	 *
 	 * @param {Object} requestOptions
+	 * @returns void
 	 */
 	setRequestOptions(requestOptions) {
 		this.mapsDataSource.requestOptions = requestOptions;
@@ -144,8 +145,7 @@ export default class DealerLocator {
 	/**
 	 * load mapsAPI and update views with data afterwards
 	 *
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @returns {Promise<undefined>}
 	 */
 	initializeMap() {
 		return new Promise((resolve, reject) => {
@@ -158,8 +158,7 @@ export default class DealerLocator {
 	/**
 	 * resets all filters, geolocation/radius + properties and displays all tupels cached or to be loaded
 	 *
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @returns {Promise<undefined>}
 	 */
 	showAll() {
 		return new Promise((resolve, reject) => {
@@ -171,10 +170,9 @@ export default class DealerLocator {
 	/**
 	 * geolocating an address or plz, centers map to result and adds radius-filter as well as showing its results
 	 *
-	 * @param {any} address
-	 * @param {integer} resultRadius
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @param {string} address
+	 * @param {number} resultRadius
+	 * @returns {Promise<undefined>}
 	 */
 	searchFor(address, resultRadius) {
 		return new Promise((resolve, reject) => {
@@ -193,7 +191,6 @@ export default class DealerLocator {
 	 * mapsAPI loaded/ready or not
 	 *
 	 * @returns {boolean}
-	 * @memberof DealerLocator
 	 */
 	mapIsLoaded() {
 		return this.googleMap.isLoaded;
@@ -203,7 +200,6 @@ export default class DealerLocator {
 	 * get current center of gmap
 	 *
 	 * @returns {google.maps.Latlng}
-	 * @memberof DealerLocator
 	 */
 	getCurrentLocation() {
 		return this.googleMap.clientLatLong;
@@ -213,10 +209,9 @@ export default class DealerLocator {
 	 * locates client on gmap and sets class-prop this.clientLatLong for later calculations to show marker near client
 	 * sets zoomlevel of gmap
 	 *
-	 * @param {int} resultRadius
-	 * @param {int} zoom
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @param {number} resultRadius
+	 * @param {number} zoom
+	 * @returns {Promise<undefined|Object>}
 	 */
 	locateUser(resultRadius, zoom) {
 		if (this.mapIsLoaded()) {
@@ -252,8 +247,8 @@ export default class DealerLocator {
 	/**
 	 * set zoom-level of gmap
 	 *
-	 * @param {any} zoom
-	 * @memberof DealerLocator
+	 * @param {number} zoom
+	 * @returns void
 	 */
 	setMapZoom(zoom) {
 		this.googleMap.setZoom(zoom);
@@ -265,8 +260,8 @@ export default class DealerLocator {
 	 * use it before using updateView() to apply the behaviour
 	 * set it to undefined if no limit is needed
 	 *
-	 * @param {any} max
-	 * @memberof DealerLocator
+	 * @param {number} max
+	 * @returns void
 	 */
 	setMaxResults(max) {
 		this.mapsDataService.maxResults = max;
@@ -275,8 +270,7 @@ export default class DealerLocator {
 	/**
 	 * updates map and custom-results views, for example after a filter has been applied
 	 *
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @returns {Promise<undefined>}
 	 */
 	updateView() {
 		return new Promise((resolve, reject) => {
@@ -288,7 +282,6 @@ export default class DealerLocator {
 	 * closes currently opened infowindow on gmap
 	 *
 	 * @returns void
-	 * @memberof DealerLocator
 	 */
 	closeInfoWindow() {
 		this.googleMap.closeInfoWindow();
@@ -299,10 +292,9 @@ export default class DealerLocator {
 	/**
 	 * add filter for property-key and -value
 	 *
-	 * @param {any} key
+	 * @param {string} key
 	 * @param {any} value
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @returns {Promise<undefined>}
 	 */
 	addFilterFor(key, value) {
 		return new Promise((resolve, reject) => {
@@ -314,11 +306,9 @@ export default class DealerLocator {
 	/**
 	 * remove previously added filter-option
 	 *
-	 * @param {any} key
+	 * @param {string} key
 	 * @param {any} value
-	 * @param {any} type
 	 * @returns {Promise}
-	 * @memberof DealerLocator
 	 */
 	removeFilter(key, value) {
 		return new Promise((resolve, reject) => {
@@ -330,9 +320,8 @@ export default class DealerLocator {
 	/**
 	 * removes old radius-filter and adds passed radius as new radius-filter
 	 *
-	 * @param {integer} radius
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @param {number} radius
+	 * @returns {Promise<undefined>}
 	 */
 	addRadiusFilterFor(radius) {
 		return new Promise((resolve, reject) => {
@@ -348,9 +337,8 @@ export default class DealerLocator {
 	/**
 	 * reset filter for specific type: radius or property
 	 *
-	 * @param {any} type
-	 * @returns {Promise}
-	 * @memberof DealerLocator
+	 * @param {string} type
+	 * @returns {Promise<undefined>}
 	 */
 	removeFilterType(type) {
 		return new Promise((resolve, reject) => {
