@@ -102,7 +102,7 @@ export default class MapsDataSource {
 				if (typeof options.body == 'object') {
 					xmlRequest.setRequestHeader(
 						'content-type',
-						opts.contentType || 'application/json',
+						options.contentType || 'application/json',
 					);
 					xmlRequest.send(JSON.stringify(options.body, null, 4));
 				} else {
