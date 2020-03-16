@@ -9,6 +9,7 @@ export default class MapsDataService {
 	/**
 	 *
 	 * @param {number} max
+	 * @memberof MapsDataService
 	 */
 	set maxResults(max) {
 		this._maxResults = max;
@@ -20,6 +21,7 @@ export default class MapsDataService {
 	 * Creates an instance of MapsDataService.
 	 * @param {MapsDataSource} mapsDataSource
 	 * @param {Function|undefined} computeDistanceBetweenPoints
+	 * @memberof MapsDataService
 	 */
 	constructor(mapsDataSource, computeDistanceBetweenPoints) {
 		this.mapsDataSource = mapsDataSource;
@@ -37,6 +39,7 @@ export default class MapsDataService {
 	 *
 	 * @param {array} data
 	 * @returns {*}
+	 * @memberof MapsDataService
 	 */
 	applyFilters(data) {
 		if (!this.filters.length) {
@@ -102,6 +105,7 @@ export default class MapsDataService {
 	 *
 	 * @param {array} data
 	 * @returns {array}
+	 * @memberof MapsDataService
 	 */
 	applyMaxResult(data) {
 		return this._maxResults
@@ -115,6 +119,7 @@ export default class MapsDataService {
 	 * returns filtered data
 	 *
 	 * @returns {Promise<undefined>}
+	 * @memberof MapsDataService
 	 */
 	getItems() {
 		return new Promise((resolve, reject) => {
@@ -130,6 +135,7 @@ export default class MapsDataService {
 	 *
 	 * @param {array} data
 	 * @returns void
+	 * @memberof MapsDataService
 	 */
 	setData(data) {
 		this.mapsDataSource.setData(data);
@@ -141,6 +147,7 @@ export default class MapsDataService {
 	 * @param {string} propName
 	 * @param {any} propValue
 	 * @returns void
+	 * @memberof MapsDataService
 	 */
 	addFilterFor(propName, propValue) {
 		this.filters.push({
@@ -156,6 +163,7 @@ export default class MapsDataService {
 	 * @param {string} propName
 	 * @param {any} propValue
 	 * @returns void
+	 * @memberof MapsDataService
 	 */
 	removeFilterFor(propName, propValue) {
 		this.filters = this.filters.filter(
@@ -172,6 +180,7 @@ export default class MapsDataService {
 	 * @param {number} center
 	 * @param {number} radius
 	 * @returns void
+	 * @memberof MapsDataService
 	 */
 	addRadiusFilterFor(center, radius) {
 		this.filters.push({ type: 'radius', center: center, radius: radius });
@@ -182,6 +191,7 @@ export default class MapsDataService {
 	 *
 	 * @param {string} type
 	 * @returns void
+	 * @memberof MapsDataService
 	 */
 	removeFilterType(type) {
 		this.filters = this.filters.filter((item) => item.type != type);
@@ -191,6 +201,7 @@ export default class MapsDataService {
 	 * reset all previously applied filters
 	 *
 	 * @returns void
+	 * @memberof MapsDataService
 	 */
 	resetFilters() {
 		this.filters = [];
@@ -201,6 +212,7 @@ export default class MapsDataService {
 	 *
 	 * @param {any} ids
 	 * @returns {Promise<array>}
+	 * @memberof MapsDataService
 	 */
 	ensureDetailsFor(ids) {
 		return new Promise((resolve, reject) => {
@@ -214,6 +226,7 @@ export default class MapsDataService {
 	 * checks if any of the active filters is a radius filter, return true or false
 	 *
 	 * @returns {boolean}
+	 * @memberof MapsDataService
 	 */
 	hasActiveRadiusFilter() {
 		let hasRadiusFilter = false;

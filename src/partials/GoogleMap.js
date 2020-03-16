@@ -14,6 +14,7 @@ export default class GoogleMap {
 	/**
 	 *
 	 * @param {Object<lat|lng, number>}
+	 * @memberof GoogleMap
 	 */
 	set clientLatLong({ lat, lng }) {
 		this._clientLatLong = new google.maps.LatLng({ lat: lat, lng: lng });
@@ -23,6 +24,7 @@ export default class GoogleMap {
 	/**
 	 *
 	 * @returns {google.maps.LatLng}
+	 * @memberof GoogleMap
 	 */
 	get clientLatLong() {
 		return this._clientLatLong;
@@ -31,6 +33,7 @@ export default class GoogleMap {
 	/**
 	 *
 	 * @returns {boolean}
+	 * @memberof GoogleMap
 	 */
 	get isLoaded() {
 		return this._isLoaded;
@@ -39,6 +42,7 @@ export default class GoogleMap {
 	/**
 	 *
 	 * @returns {array<google.maps.Marker>}
+	 * @memberof GoogleMap
 	 */
 	get markers() {
 		return this._markers;
@@ -46,6 +50,18 @@ export default class GoogleMap {
 
 	/* Initialize ------------------------------------------------------------------------------ */
 
+	/**
+	 *
+	 * @param {string} apiKey
+	 * @param {string} mapContainer
+	 * @param {boolean} hasCluster
+	 * @param {boolean} hasCustomResults
+	 * @param {MapsDataService} mapsDataService
+	 * @param {string} resultEl
+	 * @param {string} resultsContainer
+	 * @param {Object} configOptions
+	 * @memberof GoogleMap
+	 */
 	constructor(
 		apiKey,
 		mapContainer,
@@ -113,6 +129,7 @@ export default class GoogleMap {
 	 * initialize gmap api load and callbacks
 	 *
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	load() {
 		return new Promise((resolve, reject) => {
@@ -140,6 +157,7 @@ export default class GoogleMap {
 	 *
 	 * @private
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	_onGoogleMapsLoad() {
 		this._clientLatLong = new google.maps.LatLng(
@@ -166,6 +184,7 @@ export default class GoogleMap {
 	 *
 	 * @private
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	_initCustomSetStyle() {
 		this.map.data.setStyle(function(feature) {
@@ -180,6 +199,7 @@ export default class GoogleMap {
 	 *
 	 * @private
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	_initClusterer() {
 		this.markerCluster = new MarkerClusterer(
@@ -194,6 +214,7 @@ export default class GoogleMap {
 	 *
 	 * @private
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	_bindCustomResultClick() {
 		// event-handler when clicked on a result-item to show equal popup on gmap
@@ -209,6 +230,7 @@ export default class GoogleMap {
 	 *
 	 * @private
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	_reCenter() {
 		const currCenter = this.map.getCenter();
@@ -231,6 +253,7 @@ export default class GoogleMap {
 	 * @param {google.maps.Marker} marker
 	 * @private
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	_onMarkerClick(marker) {
 		if (this.defaultMapConfig.clickableIcons === false) {
@@ -261,6 +284,7 @@ export default class GoogleMap {
 	 * @param {event} e
 	 * @private
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	_onResultClick(e) {
 		const currentTarget = new NodeArray(e.currentTarget);
@@ -286,6 +310,7 @@ export default class GoogleMap {
 	 * @param {google.maps.Marker} marker
 	 * @param {string} template
 	 * @returns {Promise}
+	 * @memberof GoogleMap
 	 */
 	parseInfoWindow(marker, template) {
 		return new Promise((resolve, reject) => {
@@ -310,6 +335,7 @@ export default class GoogleMap {
 	 * @param {string} templateContainer
 	 * @param {Object<properties<Object>|id>}
 	 * @returns {htmlString}
+	 * @memberof GoogleMap
 	 */
 	parseTemplate(templateContainer, { properties, id }) {
 		const delimiters = this.defaultMapConfig.templateDelimiters;
@@ -351,6 +377,7 @@ export default class GoogleMap {
 	 * @param {array} delimiters
 	 * @param {object} properties
 	 * @return {htmlString} tmpl
+	 * @memberof GoogleMap
 	 */
 	replaceTemplateVar(tmpl, templateVar, delimiters, properties = {}) {
 		const replace = (tmpl, templateVar, data, delimiters) => {
@@ -378,6 +405,7 @@ export default class GoogleMap {
 	 * closes currently opened infowindow on gmap
 	 *
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	closeInfoWindow() {
 		if (this.infowindow) {
@@ -390,6 +418,7 @@ export default class GoogleMap {
 	 *
 	 * @param {number} zoom
 	 * @returns void
+	 * @memberof GoogleMap
 	 */
 	setZoom(zoom) {
 		this.map.setZoom(zoom);
@@ -398,6 +427,7 @@ export default class GoogleMap {
 	/**
 	 *
 	 * @returns {Promise<undefined>}
+	 * @memberof GoogleMap
 	 */
 	updateView() {
 		return new Promise((resolve, reject) => {
@@ -443,6 +473,7 @@ export default class GoogleMap {
 	 * generates marker-objects from a dataSource
 	 *
 	 * @returns {Promise<array<google.maps.marker>>}
+	 * @memberof GoogleMap
 	 */
 	getMarkers() {
 		return new Promise((resolve, reject) => {
@@ -487,6 +518,7 @@ export default class GoogleMap {
 	 *
 	 * @param {string} address
 	 * @returns {Promise<any>}
+	 * @memberof GoogleMap
 	 */
 	searchFor(address) {
 		return new Promise((resolve, reject) => {
@@ -524,6 +556,7 @@ export default class GoogleMap {
 	 * @param {object} parameters
 	 * @private
 	 * @returns {Promise<Object>}
+	 * @memberof GoogleMap
 	 */
 	_geocode(parameters) {
 		return new Promise((resolve, reject) => {
