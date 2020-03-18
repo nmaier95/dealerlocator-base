@@ -1,10 +1,14 @@
+/** @module utils */
+
 /**
  * Taken from https://davidwalsh.name/function-debounce
  *
- * @param  {Function} func
- * @param  {Number} wait
- * @param  {Boolean} immediate
- * @return {void}
+ * @param  {function} func
+ * @param  {number} wait
+ * @param  {boolean} immediate
+ * @return void
+ * @exports {function} debounce
+ * @module utils.debounce
  */
 export function debounce(func, wait, immediate) {
 	let timeout;
@@ -30,6 +34,8 @@ export function debounce(func, wait, immediate) {
  *
  * @param {htmlString} html
  * @return {htmlString}
+ * @exports {function} htmlEscape
+ * @module utils.htmlEscape
  */
 export function htmlEscape(html) {
 	html = document
@@ -40,7 +46,10 @@ export function htmlEscape(html) {
 
 /**
  *
- * @param {*} encode
+ * @param {htmlString} encode
+ * @return {htmlString}
+ * @exports {function} htmlEncode
+ * @module utils.htmlEncode
  */
 export function htmlEncode(encode) {
 	let str = '';

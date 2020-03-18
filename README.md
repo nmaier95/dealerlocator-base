@@ -1,3 +1,17 @@
+## Modules
+
+<dl>
+<dt><a href="#module_utils">utils</a></dt>
+<dd></dd>
+<dt><a href="#utils.module_debounce">debounce</a> ⇒</dt>
+<dd><p>Taken from <a href="https://davidwalsh.name/function-debounce">https://davidwalsh.name/function-debounce</a></p>
+</dd>
+<dt><a href="#utils.module_htmlEscape">htmlEscape</a> ⇒ <code>htmlString</code></dt>
+<dd></dd>
+<dt><a href="#utils.module_htmlEncode">htmlEncode</a> ⇒ <code>htmlString</code></dt>
+<dd></dd>
+</dl>
+
 ## Classes
 
 <dl>
@@ -11,17 +25,37 @@
 <dd></dd>
 </dl>
 
-## Functions
+<a name="module_utils"></a>
 
-<dl>
-<dt><a href="#debounce">debounce(func, wait, immediate)</a> ⇒ <code>void</code></dt>
-<dd><p>Taken from <a href="https://davidwalsh.name/function-debounce">https://davidwalsh.name/function-debounce</a></p>
-</dd>
-<dt><a href="#htmlEscape">htmlEscape(html)</a> ⇒ <code>htmlString</code></dt>
-<dd></dd>
-<dt><a href="#htmlEncode">htmlEncode(encode)</a></dt>
-<dd></dd>
-</dl>
+## utils
+<a name="utils.module_debounce"></a>
+
+## debounce ⇒
+Taken from https://davidwalsh.name/function-debounce
+
+**Returns**: void  
+
+| Param | Type |
+| --- | --- |
+| func | <code>function</code> | 
+| wait | <code>number</code> | 
+| immediate | <code>boolean</code> | 
+
+<a name="utils.module_htmlEscape"></a>
+
+## htmlEscape ⇒ <code>htmlString</code>
+
+| Param | Type |
+| --- | --- |
+| html | <code>htmlString</code> | 
+
+<a name="utils.module_htmlEncode"></a>
+
+## htmlEncode ⇒ <code>htmlString</code>
+
+| Param | Type |
+| --- | --- |
+| encode | <code>htmlString</code> | 
 
 <a name="DealerLocator"></a>
 
@@ -697,35 +731,4 @@ This may trigger a api request.
 | Param | Type |
 | --- | --- |
 | ids | <code>array</code> | 
-
-<a name="debounce"></a>
-
-## debounce(func, wait, immediate) ⇒ <code>void</code>
-Taken from https://davidwalsh.name/function-debounce
-
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> | 
-| wait | <code>Number</code> | 
-| immediate | <code>Boolean</code> | 
-
-<a name="htmlEscape"></a>
-
-## htmlEscape(html) ⇒ <code>htmlString</code>
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| html | <code>htmlString</code> | 
-
-<a name="htmlEncode"></a>
-
-## htmlEncode(encode)
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| encode | <code>\*</code> | 
 
