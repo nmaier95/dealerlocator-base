@@ -9,6 +9,7 @@ export default class MapsDataSource {
 	 *
 	 * @returns {null|array}
 	 * @memberof MapsDataSource
+	 * @public
 	 */
 	get data() {
 		return this._data;
@@ -19,6 +20,7 @@ export default class MapsDataSource {
 	 *
 	 * @param {Object} requestOptions
 	 * @memberof MapsDataSource
+	 * @public
 	 */
 	set requestOptions(requestOptions) {
 		this._requestOptions = requestOptions;
@@ -48,6 +50,7 @@ export default class MapsDataSource {
 	 * @param {Object} options
 	 * @returns {{data: boolean, success: boolean, errorCode: number, error: undefined, status: *}}
 	 * @memberof MapsDataSource
+	 * @private
 	 */
 	buildResult(event, options) {
 		const result = {
@@ -87,6 +90,7 @@ export default class MapsDataSource {
 	 * @param {Object} options
 	 * @returns {Promise<buildResult>}
 	 * @memberof MapsDataSource
+	 * @private
 	 */
 	request(url, options = this._requestOptions) {
 		const scope = this;
@@ -135,43 +139,13 @@ export default class MapsDataSource {
 	}
 
 	/**
-	 *
-	 * @param  {array} data
-	 * @returns void
-	 * @memberof MapsDataSource
-	 */
-	setData(data) {
-		this._data = data;
-	}
-
-	/**
-	 * Merges the given array into the current data
-	 *
-	 * @param {array} data
-	 * @returns {null|array}
-	 * @memberof MapsDataSource
-	 */
-	mergeData(data) {
-		if (!this._data) {
-			this._data = data;
-		} else {
-			for (const item of data) {
-				const localItem = this._data.find((i) => i.id == item.id);
-				if (localItem) {
-					Object.assign(localItem.properties, item.properties);
-				}
-			}
-		}
-		return this._data;
-	}
-
-	/**
 	 * Fetches data via the api and merges it
 	 *
 	 * @param {boolean} extended
 	 * @param {array} ids
 	 * @returns {Promise<undefined>}
 	 * @memberof MapsDataSource
+	 * @private
 	 */
 	fetchDataFor(extended = false, ids = []) {
 		if (this._urlGenerator === undefined) {
@@ -197,11 +171,45 @@ export default class MapsDataSource {
 	/* Public ---------------------------------------------------------------------------------- */
 
 	/**
+	 * Merges the given array into the current data
+	 *
+	 * @param {array} data
+	 * @returns {null|array}
+	 * @memberof MapsDataSource
+	 * @public
+	 */
+	mergeData(data) {
+		if (!this._data) {
+			this._data = data;
+		} else {
+			for (const item of data) {
+				const localItem = this._data.find((i) => i.id == item.id);
+				if (localItem) {
+					Object.assign(localItem.properties, item.properties);
+				}
+			}
+		}
+		return this._data;
+	}
+
+	/**
+	 *
+	 * @param  {array} data
+	 * @returns void
+	 * @memberof MapsDataSource
+	 * @public
+	 */
+	setData(data) {
+		this._data = data;
+	}
+
+	/**
 	 * Fetch all locations.
 	 * Will use cached data on subsequent calls.
 	 *
 	 * @returns {Promise<array>}
 	 * @memberof MapsDataSource
+	 * @public
 	 */
 	fetch() {
 		return new Promise((resolve, reject) => {
@@ -220,6 +228,7 @@ export default class MapsDataSource {
 	 * @param {array} ids
 	 * @returns {Promise<array>}
 	 * @memberof MapsDataSource
+	 * @public
 	 */
 	ensureDetailsFor(ids) {
 		return new Promise((resolve, reject) => {

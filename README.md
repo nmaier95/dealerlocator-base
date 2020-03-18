@@ -89,6 +89,7 @@ mapsDataService: optional {MapsDataService}
 googleMap: optional {GoogleMap}
 
 **Kind**: static property of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 <a name="DealerLocator.setData"></a>
 
 ### DealerLocator.setData(data) ⇒
@@ -96,6 +97,7 @@ calls MapsDataSource to set data if no urlGenerator is passed
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -109,6 +111,7 @@ requestOptions can contain following keys: method, acceptType, body, formData, t
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -120,18 +123,21 @@ requestOptions can contain following keys: method, acceptType, body, formData, t
 load mapsAPI and update views with data afterwards
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 <a name="DealerLocator.showAll"></a>
 
 ### DealerLocator.showAll() ⇒ <code>Promise.&lt;undefined&gt;</code>
 resets all filters, geolocation/radius + properties and displays all tupels cached or to be loaded
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 <a name="DealerLocator.searchFor"></a>
 
 ### DealerLocator.searchFor(address, resultRadius) ⇒ <code>Promise.&lt;undefined&gt;</code>
 geolocating an address or plz, centers map to result and adds radius-filter as well as showing its results
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -144,12 +150,14 @@ geolocating an address or plz, centers map to result and adds radius-filter as w
 mapsAPI loaded/ready or not
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 <a name="DealerLocator.getCurrentLocation"></a>
 
 ### DealerLocator.getCurrentLocation() ⇒ <code>google.maps.Latlng</code>
 get current center of gmap
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 <a name="DealerLocator.locateUser"></a>
 
 ### DealerLocator.locateUser(resultRadius, zoom) ⇒ <code>Promise.&lt;(undefined\|Object)&gt;</code>
@@ -157,6 +165,7 @@ locates client on gmap and sets class-prop this.clientLatLong for later calculat
 sets zoomlevel of gmap
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -170,6 +179,7 @@ set zoom-level of gmap
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -185,6 +195,7 @@ set it to undefined if no limit is needed
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -196,6 +207,7 @@ set it to undefined if no limit is needed
 updates map and custom-results views, for example after a filter has been applied
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 <a name="DealerLocator.closeInfoWindow"></a>
 
 ### DealerLocator.closeInfoWindow() ⇒
@@ -203,12 +215,14 @@ closes currently opened infowindow on gmap
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
 **Returns**: void  
+**Access**: public  
 <a name="DealerLocator.addFilterFor"></a>
 
 ### DealerLocator.addFilterFor(key, value) ⇒ <code>Promise.&lt;undefined&gt;</code>
 add filter for property-key and -value
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -221,6 +235,7 @@ add filter for property-key and -value
 remove previously added filter-option
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -233,6 +248,7 @@ remove previously added filter-option
 removes old radius-filter and adds passed radius as new radius-filter
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -244,6 +260,7 @@ removes old radius-filter and adds passed radius as new radius-filter
 reset filter for specific type: radius or property
 
 **Kind**: static method of [<code>DealerLocator</code>](#DealerLocator)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -271,6 +288,7 @@ reset filter for specific type: radius or property
     * [.updateView()](#GoogleMap.updateView) ⇒ <code>Promise.&lt;undefined&gt;</code>
     * [.getMarkers()](#GoogleMap.getMarkers) ⇒ <code>Promise.&lt;array.&lt;google.maps.marker&gt;&gt;</code>
     * [.searchFor(address)](#GoogleMap.searchFor) ⇒ <code>Promise.&lt;any&gt;</code>
+    * [._geocode(parameters)](#GoogleMap._geocode) ⇒ <code>Promise.&lt;Object&gt;</code>
 
 <a name="new_GoogleMap_new"></a>
 
@@ -324,12 +342,14 @@ initialize gmap api load and callbacks
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
 **Returns**: void  
+**Access**: public  
 <a name="GoogleMap.parseInfoWindow"></a>
 
 ### GoogleMap.parseInfoWindow(marker, template) ⇒ <code>Promise</code>
 parses data and template into google.maps.infowindow
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -343,6 +363,7 @@ template for popup when clicked on position on gmap
  !! distance and id are properties which cannot change their name/key !!
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -357,6 +378,7 @@ Escapes html to prevent xss and tries to replace html encoded templatevars as we
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
 **Returns**: <code>htmlString</code> - tmpl  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -372,6 +394,7 @@ closes currently opened infowindow on gmap
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
 **Returns**: void  
+**Access**: public  
 <a name="GoogleMap.setZoom"></a>
 
 ### GoogleMap.setZoom(zoom) ⇒
@@ -379,6 +402,7 @@ sets zoom-level of gmap
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -388,12 +412,14 @@ sets zoom-level of gmap
 
 ### GoogleMap.updateView() ⇒ <code>Promise.&lt;undefined&gt;</code>
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
+**Access**: public  
 <a name="GoogleMap.getMarkers"></a>
 
 ### GoogleMap.getMarkers() ⇒ <code>Promise.&lt;array.&lt;google.maps.marker&gt;&gt;</code>
 generates marker-objects from a dataSource
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
+**Access**: public  
 <a name="GoogleMap.searchFor"></a>
 
 ### GoogleMap.searchFor(address) ⇒ <code>Promise.&lt;any&gt;</code>
@@ -401,10 +427,30 @@ searches by address
 sets this.clientLatLong to result pos
 
 **Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
 | address | <code>string</code> | 
+
+<a name="GoogleMap._geocode"></a>
+
+### GoogleMap.\_geocode(parameters) ⇒ <code>Promise.&lt;Object&gt;</code>
+in preparation of reverse geocoding where user gets located on page load, this location is a latLng and has to be transfered into
+a location/country
+
+resources:
+https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse?hl=de
+https://developers.google.com/maps/documentation/geocoding/intro?hl=de#Viewports
+
+{'address': address} | {'location': latlng}
+
+**Kind**: static method of [<code>GoogleMap</code>](#GoogleMap)  
+**Access**: public  
+
+| Param | Type |
+| --- | --- |
+| parameters | <code>object</code> | 
 
 <a name="MapsDataService"></a>
 
@@ -416,8 +462,6 @@ sets this.clientLatLong to result pos
     * [.module.exports](#MapsDataService.module.exports)
         * [new module.exports(mapsDataSource, computeDistanceBetweenPoints)](#new_MapsDataService.module.exports_new)
     * [.maxResults](#MapsDataService.maxResults)
-    * [.applyFilters(data)](#MapsDataService.applyFilters) ⇒ <code>\*</code>
-    * [.applyMaxResult(data)](#MapsDataService.applyMaxResult) ⇒ <code>array</code>
     * [.getItems()](#MapsDataService.getItems) ⇒ <code>Promise.&lt;undefined&gt;</code>
     * [.setData(data)](#MapsDataService.setData) ⇒
     * [.addFilterFor(propName, propValue)](#MapsDataService.addFilterFor) ⇒
@@ -457,37 +501,13 @@ Creates an instance of MapsDataService.
 | --- | --- |
 | max | <code>number</code> | 
 
-<a name="MapsDataService.applyFilters"></a>
-
-### MapsDataService.applyFilters(data) ⇒ <code>\*</code>
-filters data for previous applied filter-options
-sorts by distance for radius-filter as well
-applies maxResults limit if maxResults isset
-
-**Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
-
-| Param | Type |
-| --- | --- |
-| data | <code>array</code> | 
-
-<a name="MapsDataService.applyMaxResult"></a>
-
-### MapsDataService.applyMaxResult(data) ⇒ <code>array</code>
-if class-property maxResults isset (!= undefined), the passed data gets sliced down to maxResults number and returned
-else a copy of the data-param-object gets returned
-
-**Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
-
-| Param | Type |
-| --- | --- |
-| data | <code>array</code> | 
-
 <a name="MapsDataService.getItems"></a>
 
 ### MapsDataService.getItems() ⇒ <code>Promise.&lt;undefined&gt;</code>
 returns filtered data
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
+**Access**: public  
 <a name="MapsDataService.setData"></a>
 
 ### MapsDataService.setData(data) ⇒
@@ -495,6 +515,7 @@ prefills data of maps data source if no urlGenerator is passed
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -507,6 +528,7 @@ add filter-option, does not apply them to data yet
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -520,6 +542,7 @@ remove a specific previously added filter-option, does not apply to data yet
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -533,6 +556,7 @@ add filter for radius search
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -546,6 +570,7 @@ remove filter of type "radius" or "property"
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
 **Returns**: void  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -558,12 +583,14 @@ reset all previously applied filters
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
 **Returns**: void  
+**Access**: public  
 <a name="MapsDataService.ensureDetailsFor"></a>
 
 ### MapsDataService.ensureDetailsFor(ids) ⇒ <code>Promise.&lt;array&gt;</code>
 use to check if tuple/s has/have extended properties already loaded, if not it´ll be loaded
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
@@ -575,6 +602,7 @@ use to check if tuple/s has/have extended properties already loaded, if not it´
 checks if any of the active filters is a radius filter, return true or false
 
 **Kind**: static method of [<code>MapsDataService</code>](#MapsDataService)  
+**Access**: public  
 <a name="MapsDataSource"></a>
 
 ## MapsDataSource
@@ -586,11 +614,8 @@ checks if any of the active filters is a radius filter, return true or false
         * [new module.exports(urlGenerator, requestOptions)](#new_MapsDataSource.module.exports_new)
     * [.data](#MapsDataSource.data) ⇒ <code>null</code> \| <code>array</code>
     * [.requestOptions](#MapsDataSource.requestOptions)
-    * [.buildResult(event, options)](#MapsDataSource.buildResult) ⇒ <code>Object</code>
-    * [.request(url, options)](#MapsDataSource.request) ⇒ <code>Promise.&lt;buildResult&gt;</code>
-    * [.setData(data)](#MapsDataSource.setData) ⇒
     * [.mergeData(data)](#MapsDataSource.mergeData) ⇒ <code>null</code> \| <code>array</code>
-    * [.fetchDataFor(extended, ids)](#MapsDataSource.fetchDataFor) ⇒ <code>Promise.&lt;undefined&gt;</code>
+    * [.setData(data)](#MapsDataSource.setData) ⇒
     * [.fetch()](#MapsDataSource.fetch) ⇒ <code>Promise.&lt;array&gt;</code>
     * [.ensureDetailsFor(ids)](#MapsDataSource.ensureDetailsFor) ⇒ <code>Promise.&lt;array&gt;</code>
 
@@ -616,50 +641,18 @@ loads and caches data for maps
 
 ### MapsDataSource.data ⇒ <code>null</code> \| <code>array</code>
 **Kind**: static property of [<code>MapsDataSource</code>](#MapsDataSource)  
+**Access**: public  
 <a name="MapsDataSource.requestOptions"></a>
 
 ### MapsDataSource.requestOptions
 requestOptions can contain following keys: method, acceptType, body, formData, transformer
 
 **Kind**: static property of [<code>MapsDataSource</code>](#MapsDataSource)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
 | requestOptions | <code>Object</code> | 
-
-<a name="MapsDataSource.buildResult"></a>
-
-### MapsDataSource.buildResult(event, options) ⇒ <code>Object</code>
-Formats request-response data
-
-**Kind**: static method of [<code>MapsDataSource</code>](#MapsDataSource)  
-
-| Param | Type |
-| --- | --- |
-| event | <code>XMLHttpRequestEventTarget</code> | 
-| options | <code>Object</code> | 
-
-<a name="MapsDataSource.request"></a>
-
-### MapsDataSource.request(url, options) ⇒ <code>Promise.&lt;buildResult&gt;</code>
-Requests a json document
-
-**Kind**: static method of [<code>MapsDataSource</code>](#MapsDataSource)  
-
-| Param | Type |
-| --- | --- |
-| url | <code>string</code> | 
-| options | <code>Object</code> | 
-
-<a name="MapsDataSource.setData"></a>
-
-### MapsDataSource.setData(data) ⇒
-**Kind**: static method of [<code>MapsDataSource</code>](#MapsDataSource)  
-**Returns**: void  
-
-| Param | Type |
-| --- | --- |
-| data | <code>array</code> | 
 
 <a name="MapsDataSource.mergeData"></a>
 
@@ -667,22 +660,22 @@ Requests a json document
 Merges the given array into the current data
 
 **Kind**: static method of [<code>MapsDataSource</code>](#MapsDataSource)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |
 | data | <code>array</code> | 
 
-<a name="MapsDataSource.fetchDataFor"></a>
+<a name="MapsDataSource.setData"></a>
 
-### MapsDataSource.fetchDataFor(extended, ids) ⇒ <code>Promise.&lt;undefined&gt;</code>
-Fetches data via the api and merges it
-
+### MapsDataSource.setData(data) ⇒
 **Kind**: static method of [<code>MapsDataSource</code>](#MapsDataSource)  
+**Returns**: void  
+**Access**: public  
 
-| Param | Type | Default |
-| --- | --- | --- |
-| extended | <code>boolean</code> | <code>false</code> | 
-| ids | <code>array</code> |  | 
+| Param | Type |
+| --- | --- |
+| data | <code>array</code> | 
 
 <a name="MapsDataSource.fetch"></a>
 
@@ -691,6 +684,7 @@ Fetch all locations.
 Will use cached data on subsequent calls.
 
 **Kind**: static method of [<code>MapsDataSource</code>](#MapsDataSource)  
+**Access**: public  
 <a name="MapsDataSource.ensureDetailsFor"></a>
 
 ### MapsDataSource.ensureDetailsFor(ids) ⇒ <code>Promise.&lt;array&gt;</code>
@@ -698,6 +692,7 @@ Ensures that all given id's contain all detail information.
 This may trigger a api request.
 
 **Kind**: static method of [<code>MapsDataSource</code>](#MapsDataSource)  
+**Access**: public  
 
 | Param | Type |
 | --- | --- |

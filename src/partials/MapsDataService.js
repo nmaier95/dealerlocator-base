@@ -37,6 +37,7 @@ export default class MapsDataService {
 	 * sorts by distance for radius-filter as well
 	 * applies maxResults limit if maxResults isset
 	 *
+	 * @private
 	 * @param {array} data
 	 * @returns {*}
 	 * @memberof MapsDataService
@@ -106,6 +107,7 @@ export default class MapsDataService {
 	 * @param {array} data
 	 * @returns {array}
 	 * @memberof MapsDataService
+	 * @private
 	 */
 	applyMaxResult(data) {
 		return this._maxResults
@@ -120,6 +122,7 @@ export default class MapsDataService {
 	 *
 	 * @returns {Promise<undefined>}
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	getItems() {
 		return new Promise((resolve, reject) => {
@@ -136,6 +139,7 @@ export default class MapsDataService {
 	 * @param {array} data
 	 * @returns void
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	setData(data) {
 		this.mapsDataSource.setData(data);
@@ -148,6 +152,7 @@ export default class MapsDataService {
 	 * @param {any} propValue
 	 * @returns void
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	addFilterFor(propName, propValue) {
 		this.filters.push({
@@ -164,6 +169,7 @@ export default class MapsDataService {
 	 * @param {any} propValue
 	 * @returns void
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	removeFilterFor(propName, propValue) {
 		this.filters = this.filters.filter(
@@ -181,6 +187,7 @@ export default class MapsDataService {
 	 * @param {number} radius
 	 * @returns void
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	addRadiusFilterFor(center, radius) {
 		this.filters.push({ type: 'radius', center: center, radius: radius });
@@ -192,6 +199,7 @@ export default class MapsDataService {
 	 * @param {string} type
 	 * @returns void
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	removeFilterType(type) {
 		this.filters = this.filters.filter((item) => item.type != type);
@@ -202,6 +210,7 @@ export default class MapsDataService {
 	 *
 	 * @returns void
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	resetFilters() {
 		this.filters = [];
@@ -213,6 +222,7 @@ export default class MapsDataService {
 	 * @param {any} ids
 	 * @returns {Promise<array>}
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	ensureDetailsFor(ids) {
 		return new Promise((resolve, reject) => {
@@ -227,6 +237,7 @@ export default class MapsDataService {
 	 *
 	 * @returns {boolean}
 	 * @memberof MapsDataService
+	 * @public
 	 */
 	hasActiveRadiusFilter() {
 		let hasRadiusFilter = false;

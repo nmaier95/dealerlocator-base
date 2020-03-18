@@ -130,6 +130,7 @@ export default class GoogleMap {
 	 *
 	 * @returns void
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	load() {
 		return new Promise((resolve, reject) => {
@@ -311,6 +312,7 @@ export default class GoogleMap {
 	 * @param {string} template
 	 * @returns {Promise}
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	parseInfoWindow(marker, template) {
 		return new Promise((resolve, reject) => {
@@ -336,6 +338,7 @@ export default class GoogleMap {
 	 * @param {Object<properties<Object>|id>}
 	 * @returns {htmlString}
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	parseTemplate(templateContainer, { properties, id }) {
 		const delimiters = this.defaultMapConfig.templateDelimiters;
@@ -378,6 +381,7 @@ export default class GoogleMap {
 	 * @param {object} properties
 	 * @return {htmlString} tmpl
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	replaceTemplateVar(tmpl, templateVar, delimiters, properties = {}) {
 		const replace = (tmpl, templateVar, data, delimiters) => {
@@ -406,6 +410,7 @@ export default class GoogleMap {
 	 *
 	 * @returns void
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	closeInfoWindow() {
 		if (this.infowindow) {
@@ -419,6 +424,7 @@ export default class GoogleMap {
 	 * @param {number} zoom
 	 * @returns void
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	setZoom(zoom) {
 		this.map.setZoom(zoom);
@@ -428,6 +434,7 @@ export default class GoogleMap {
 	 *
 	 * @returns {Promise<undefined>}
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	updateView() {
 		return new Promise((resolve, reject) => {
@@ -474,6 +481,7 @@ export default class GoogleMap {
 	 *
 	 * @returns {Promise<array<google.maps.marker>>}
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	getMarkers() {
 		return new Promise((resolve, reject) => {
@@ -519,6 +527,7 @@ export default class GoogleMap {
 	 * @param {string} address
 	 * @returns {Promise<any>}
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	searchFor(address) {
 		return new Promise((resolve, reject) => {
@@ -557,6 +566,7 @@ export default class GoogleMap {
 	 * @private
 	 * @returns {Promise<Object>}
 	 * @memberof GoogleMap
+	 * @public
 	 */
 	_geocode(parameters) {
 		return new Promise((resolve, reject) => {
